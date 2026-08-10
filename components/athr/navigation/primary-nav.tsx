@@ -9,6 +9,7 @@ import {
   Home,
   MessageCircle,
   UserRound,
+  type LucideIcon,
 } from "lucide-react";
 
 import {
@@ -20,7 +21,7 @@ import { cn } from "@/lib/utils";
 interface NavigationItem {
   title: string;
   href: string;
-  icon: React.ComponentType<{ className?: string; "aria-hidden"?: boolean }>;
+  icon: LucideIcon;
 }
 
 interface NavigationSeparator {
