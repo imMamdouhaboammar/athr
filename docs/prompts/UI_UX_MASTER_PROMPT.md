@@ -3,7 +3,58 @@
 Use this prompt with a product designer, frontend agent or design-focused coding agent
 
 ```text
-Design AthR, a professional work network and freelance marketplace for digital marketing specialists
+Design and implement AthR, a professional work network and freelance marketplace for digital marketing specialists
+
+NON-NEGOTIABLE COMPONENT SOURCING WORKFLOW
+
+Do not reinvent common UI
+
+Before creating any UI module from scratch:
+
+1. Search the existing AthR Component Bank
+2. Search 21st.dev using the official CLI
+3. Inspect complete components, screens and templates before reaching for small primitives
+4. Install the strongest suitable candidate through `21st add` or the exact shadcn registry command published by that component
+5. Adapt the installed source to AthR
+6. Only write a custom module when no suitable candidate exists or adapting existing candidates would produce a worse implementation
+
+Default decision order:
+
+Existing AthR Component Bank
+-> 21st.dev complete component or screen
+-> 21st.dev primitive combination
+-> existing shadcn primitive
+-> custom implementation only with a documented reason
+
+Typical search flow:
+
+21st search "professional social navigation"
+21st search "social post card"
+21st search "portfolio gallery"
+21st search "profile header"
+21st search "filter bar"
+21st search "messaging sidebar"
+
+Do not reproduce an installable 21st.dev component manually from screenshots or memory
+
+Do not assemble a weaker custom screen from many generic primitives when a strong complete 21st.dev screen already solves most of the interaction
+
+After installation, preserve useful interaction quality but replace demo content, irrelevant styling, redundant dependencies and product semantics that do not fit AthR
+
+Every finished UI task should record:
+
+21st search performed
+candidate selected
+install method
+local primitive path
+AthR composition path if applicable
+dependencies added
+adaptations made
+Soft Pop status
+responsive review
+accessibility review
+typecheck
+build
 
 CANONICAL DESIGN SYSTEM
 
@@ -317,6 +368,12 @@ Verify both supported appearance modes
 FINAL QUALITY TEST
 
 Before accepting a screen ask:
+
+Did the agent search AthR and 21st.dev before writing custom UI?
+If no, stop and search first
+
+Was a strong existing complete component or screen ignored without a documented reason?
+If yes, reconsider the implementation
 
 Does it use the actual Soft Pop design system rather than a guessed lookalike?
 If no, correct the token layer
