@@ -3,6 +3,21 @@
 import { PostCard } from "@/components/ui/post-card";
 
 export function PostCardDemo() {
+  const handleShare = async () => {
+    const shareData = {
+      title: "AthR Case Study",
+      text: "A marketing case study shared from the AthR component demo",
+      url: window.location.href,
+    };
+
+    if (navigator.share) {
+      await navigator.share(shareData);
+      return;
+    }
+
+    await navigator.clipboard.writeText(window.location.href);
+  };
+
   return (
     <PostCard
       author={{
@@ -24,6 +39,7 @@ export function PostCardDemo() {
         height: 1067,
       }}
       defaultLiked
+      onShare={handleShare}
     />
   );
 }
