@@ -34,12 +34,14 @@ https://21st.dev/@serafimcloud/themes/soft-pop
 
 - [`components/21ST_COMPONENT_WORKFLOW.md`](components/21ST_COMPONENT_WORKFLOW.md) — mandatory 21st.dev-first sourcing workflow; custom UI is the fallback
 - [`components/README.md`](components/README.md) — bank rules, status vocabulary, and catalog
+- [`components/landing/CANONICAL_HERO.md`](components/landing/CANONICAL_HERO.md) — required public landing hero composition and AthR adaptation contract
 - [`components/navigation/PRIMARY_NAVIGATION.md`](components/navigation/PRIMARY_NAVIGATION.md) — approved navigation module
 - [`components/feed/POST_CARD.md`](components/feed/POST_CARD.md) — approved Work Feed Post Card module
 
 Current approved bank files:
 
 ```text
+/components/ui/hero.tsx
 /components/ui/expandable-tabs.tsx
 /components/ui/expandable-tabs.demo.tsx
 /components/athr/navigation/primary-nav.tsx
@@ -47,6 +49,8 @@ Current approved bank files:
 /components/ui/post-card.demo.tsx
 /components/athr/feed/work-post-card.tsx
 ```
+
+The public landing hero is already selected. Do not replace it with a generic hero discovered later; use the canonical hero entry above and use 21st.dev for supporting modules and the Soft Pop source
 
 ## Architecture
 
@@ -74,7 +78,7 @@ Current approved bank files:
 ## Prompt Pack
 
 - [`prompts/MASTER_PRODUCT_PROMPT.md`](prompts/MASTER_PRODUCT_PROMPT.md)
-- [`prompts/UI_UX_MASTER_PROMPT.md`](prompts/UI_UX_MASTER_PROMPT.md) — includes mandatory 21st.dev-first UI sourcing
+- [`prompts/UI_UX_MASTER_PROMPT.md`](prompts/UI_UX_MASTER_PROMPT.md) — includes mandatory 21st.dev-first UI sourcing and the canonical landing hero
 - [`prompts/IMPLEMENTATION_QA_PROMPT.md`](prompts/IMPLEMENTATION_QA_PROMPT.md)
 
 ## Agent Conventions
@@ -104,5 +108,7 @@ Start coding sessions from `../Starter-Prompt.md`
 Load the narrowest document that governs the current task
 
 For UI work, establish 21st access through `agents/21ST_AGENT_SETUP.md`, then search the existing AthR Component Bank and 21st.dev before custom implementation
+
+For landing-hero work, `components/landing/CANONICAL_HERO.md` is already the selected source of truth and should be adapted rather than replaced
 
 Do not duplicate requirements into a new document merely for convenience; link to the existing source of truth and add only new decisions or behavior
