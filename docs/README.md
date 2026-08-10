@@ -28,15 +28,20 @@ https://21st.dev/@serafimcloud/themes/soft-pop
 
 ## Component Bank
 
+- [`components/21ST_COMPONENT_WORKFLOW.md`](components/21ST_COMPONENT_WORKFLOW.md) — mandatory 21st.dev-first sourcing workflow; custom UI is the fallback
 - [`components/README.md`](components/README.md) — bank rules, status vocabulary, and catalog
-- [`components/navigation/PRIMARY_NAVIGATION.md`](components/navigation/PRIMARY_NAVIGATION.md) — first approved bank module
+- [`components/navigation/PRIMARY_NAVIGATION.md`](components/navigation/PRIMARY_NAVIGATION.md) — approved navigation module
+- [`components/feed/POST_CARD.md`](components/feed/POST_CARD.md) — approved Work Feed Post Card module
 
-Approved navigation files:
+Current approved bank files:
 
 ```text
 /components/ui/expandable-tabs.tsx
 /components/ui/expandable-tabs.demo.tsx
 /components/athr/navigation/primary-nav.tsx
+/components/ui/post-card.tsx
+/components/ui/post-card.demo.tsx
+/components/athr/feed/work-post-card.tsx
 ```
 
 ## Architecture
@@ -52,7 +57,7 @@ Approved navigation files:
 
 ## Frontend Setup
 
-- [`setup/FRONTEND_SETUP.md`](setup/FRONTEND_SETUP.md) — initialize Next.js, Tailwind, TypeScript, shadcn, Soft Pop, and Component Bank dependencies safely in the existing repository
+- [`setup/FRONTEND_SETUP.md`](setup/FRONTEND_SETUP.md) — initialize Next.js, Tailwind, TypeScript, shadcn, 21st CLI, Soft Pop, and Component Bank dependencies safely in the existing repository
 
 ## Roadmap
 
@@ -65,7 +70,7 @@ Approved navigation files:
 ## Prompt Pack
 
 - [`prompts/MASTER_PRODUCT_PROMPT.md`](prompts/MASTER_PRODUCT_PROMPT.md)
-- [`prompts/UI_UX_MASTER_PROMPT.md`](prompts/UI_UX_MASTER_PROMPT.md)
+- [`prompts/UI_UX_MASTER_PROMPT.md`](prompts/UI_UX_MASTER_PROMPT.md) — includes mandatory 21st.dev-first UI sourcing
 - [`prompts/IMPLEMENTATION_QA_PROMPT.md`](prompts/IMPLEMENTATION_QA_PROMPT.md)
 
 ## Agent Conventions
@@ -73,7 +78,7 @@ Approved navigation files:
 - [`agents/issue-tracker.md`](agents/issue-tracker.md)
 - [`agents/triage-labels.md`](agents/triage-labels.md)
 - [`agents/domain.md`](agents/domain.md)
-- [`../AGENTS.md`](../AGENTS.md)
+- [`../AGENTS.md`](../AGENTS.md) — includes the non-negotiable component sourcing rule
 
 ## Implementation Plans
 
@@ -86,5 +91,7 @@ Approved navigation files:
 ## Working Rule
 
 Load the narrowest document that governs the current task
+
+For UI work, search the existing AthR Component Bank and 21st.dev before custom implementation
 
 Do not duplicate requirements into a new document merely for convenience; link to the existing source of truth and add only new decisions or behavior
