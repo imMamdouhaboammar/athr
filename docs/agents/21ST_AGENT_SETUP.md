@@ -10,6 +10,36 @@ Canonical UI sourcing workflow:
 
 [`../components/21ST_COMPONENT_WORKFLOW.md`](../components/21ST_COMPONENT_WORKFLOW.md)
 
+## Mandatory Skills Bootstrap
+
+Installing the 21st skills is a required AthR bootstrap step for coding agents that work on UI
+
+Run this from the project environment before UI implementation:
+
+```bash
+npx @21st-dev/cli install-skill
+```
+
+Treat this as mandatory, not optional setup
+
+The required readiness order is:
+
+```text
+install 21st skills
+-> establish CLI or MCP access
+-> search existing AthR and 21st components
+-> inspect candidate source
+-> install or retrieve
+-> adapt to AthR
+-> verify
+```
+
+Do not hard-code or assume the skill installation destination; let the current 21st CLI install the supported skills for the active agent environment
+
+An agent should rerun the skills bootstrap when the 21st skills are absent, the environment is newly provisioned, or the installed 21st tooling has been reset
+
+A UI task is not ready to implement until the agent has either installed the skills or documented a concrete infrastructure failure preventing the command from running
+
 ## Security Rule
 
 Use `API_KEY_21ST` for non-OAuth clients and automation
@@ -22,11 +52,17 @@ Repository examples use placeholders only
 
 ## Project CLI
 
-Install the official CLI once:
+Install the official CLI once and sign in locally:
 
 ```bash
 npm i -g @21st-dev/cli
 21st login
+```
+
+Then ensure the agent skills are installed:
+
+```bash
+npx @21st-dev/cli install-skill
 ```
 
 `21st login` opens a browser and saves the local session outside the repository
@@ -41,7 +77,7 @@ Verify the CLI before UI work:
 The expected working loop is:
 
 ```text
-search -> inspect -> install -> adapt -> verify -> record in Component Bank
+skills -> search -> inspect -> install -> adapt -> verify -> record in Component Bank
 ```
 
 Useful commands include:
@@ -64,6 +100,12 @@ Provide the key through the environment or CI secret store:
 export API_KEY_21ST="<secret-from-your-secret-store>"
 ```
 
+Bootstrap the skills in newly provisioned agent environments before UI work:
+
+```bash
+npx @21st-dev/cli install-skill
+```
+
 Then use the CLI's API-key path where needed:
 
 ```bash
@@ -73,6 +115,12 @@ Then use the CLI's API-key path where needed:
 If a command reads `API_KEY_21ST` automatically, prefer the environment variable rather than duplicating a flag across scripts
 
 ## Claude Code
+
+### Required bootstrap
+
+```bash
+npx @21st-dev/cli install-skill
+```
 
 ### Preferred project setup
 
@@ -133,6 +181,12 @@ Claude Desktop should use the remote connector flow where available
 
 This path does not require placing an API key in a repository file
 
+The repository-level coding-agent environment should still run the mandatory skills bootstrap before implementation work:
+
+```bash
+npx @21st-dev/cli install-skill
+```
+
 Verify by starting a chat and asking Claude to search 21st; the 21st connector tools should be available
 
 ### Advanced stdio bridge
@@ -157,6 +211,12 @@ For environments that only accept stdio-style desktop config, use `mcp-remote` a
 The bridge performs the remote authentication flow; do not embed a repository API key into this JSON
 
 ## Codex
+
+### Required bootstrap
+
+```bash
+npx @21st-dev/cli install-skill
+```
 
 ### Register with an environment-backed credential
 
@@ -199,6 +259,12 @@ Use the plugin route when it is supported by the active Codex environment; other
 
 Any client that supports streamable HTTP can connect to the canonical endpoint
 
+Bootstrap the 21st skills in the coding environment first:
+
+```bash
+npx @21st-dev/cli install-skill
+```
+
 Representative config:
 
 ```json
@@ -228,27 +294,29 @@ List the MCP tools from the client and confirm 21st discovery/retrieval tools ar
 
 For every AthR UI task:
 
-1. Confirm the existing Component Bank has been searched
-2. Confirm 21st CLI or MCP access is available
-3. Search 21st before custom implementation
-4. Inspect real candidate source and dependencies
-5. Install or retrieve the strongest suitable candidate
-6. Adapt it to AthR domain behavior
-7. Apply Soft Pop and AthR semantic tokens
-8. Preserve useful accessibility and responsive behavior
-9. Remove demo content and irrelevant dependencies
-10. Record source, identifier, install method, dependencies, and adaptations in the Component Bank
-11. Run typecheck, build, accessibility, and responsive verification when the runtime exists
+1. Confirm `npx @21st-dev/cli install-skill` has been run for the active coding environment
+2. Confirm the existing Component Bank has been searched
+3. Confirm 21st CLI or MCP access is available
+4. Search 21st before custom implementation
+5. Inspect real candidate source and dependencies
+6. Install or retrieve the strongest suitable candidate
+7. Adapt it to AthR domain behavior
+8. Apply Soft Pop and AthR semantic tokens
+9. Preserve useful accessibility and responsive behavior
+10. Remove demo content and irrelevant dependencies
+11. Record source, identifier, install method, dependencies, and adaptations in the Component Bank
+12. Run typecheck, build, accessibility, and responsive verification when the runtime exists
 
 If MCP is unavailable, use the 21st CLI
 
-If the CLI is unavailable, document the infrastructure blocker rather than silently skipping the 21st search requirement
+If the CLI or skill bootstrap is unavailable, document the infrastructure blocker rather than silently skipping the requirement
 
 ## Agent Completion Evidence
 
 A completed UI task should report:
 
 ```text
+21st skills installed: yes
 21st access: MCP / CLI
 21st search performed: yes
 Candidate selected: <identifier or URL>
@@ -272,4 +340,4 @@ If a real 21st API key is accidentally committed, pasted into a public artifact,
 3. Replace the usage with `API_KEY_21ST`
 4. Check the relevant Git history and CI logs for further exposure
 
-Completion criterion: every active coding-agent environment can reach 21st through CLI or MCP without any 21st secret living in tracked repository content
+Completion criterion: every active coding-agent environment has the 21st skills installed and can reach 21st through CLI or MCP without any 21st secret living in tracked repository content
