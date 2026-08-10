@@ -2,11 +2,11 @@
 
 Start with [CONTEXT.md](CONTEXT.md) for domain language and [docs/README.md](docs/README.md) for the documentation index
 
-## Non-negotiable UI sourcing rule
+## 21st.dev first
 
-For every new UI requirement, search the existing AthR Component Bank and 21st.dev before writing a new module from scratch
+For any UI task, read [docs/agents/21ST_AGENT_SETUP.md](docs/agents/21ST_AGENT_SETUP.md) and [docs/components/21ST_COMPONENT_WORKFLOW.md](docs/components/21ST_COMPONENT_WORKFLOW.md) before implementation
 
-Follow [docs/components/21ST_COMPONENT_WORKFLOW.md](docs/components/21ST_COMPONENT_WORKFLOW.md)
+The active coding agent must use 21st through MCP or CLI to search existing components, screens, templates, and themes before creating custom UI
 
 Default order:
 
@@ -18,18 +18,20 @@ Existing AthR Component Bank
 -> custom implementation only with a documented reason
 ```
 
-Use the official 21st CLI to search and install selected modules where possible
+Use `API_KEY_21ST` or OAuth/local login for authentication
 
-Do not manually recreate an installable 21st.dev module from screenshots or visual memory
+Keep real `21st_sk_...` credentials outside tracked repository content
 
-Adapt installed modules to AthR's domain, Soft Pop tokens, accessibility, responsive behavior, and product requirements rather than blindly copying demo content
+If MCP is unavailable, use the 21st CLI; infrastructure failure does not remove the search-before-build requirement
+
+Adapt selected 21st modules to AthR domain behavior, Soft Pop tokens, accessibility, responsive behavior, and product requirements
 
 ## Agent skills
 
 - Planning or specs: read [docs/agents/issue-tracker.md](docs/agents/issue-tracker.md), [docs/agents/triage-labels.md](docs/agents/triage-labels.md), and [docs/agents/domain.md](docs/agents/domain.md)
 - Product behavior: follow [docs/product/PRD.md](docs/product/PRD.md), [docs/product/FUNCTIONAL_REQUIREMENTS.md](docs/product/FUNCTIONAL_REQUIREMENTS.md), and the focused product documents they reference
 - Architecture or schema work: follow [docs/architecture/TECHNICAL_ARCHITECTURE.md](docs/architecture/TECHNICAL_ARCHITECTURE.md), [docs/architecture/STATE_MACHINES.md](docs/architecture/STATE_MACHINES.md), and relevant ADRs under `docs/adr/`
-- UI work: first follow [docs/components/21ST_COMPONENT_WORKFLOW.md](docs/components/21ST_COMPONENT_WORKFLOW.md), then [docs/design/DESIGN_SYSTEM.md](docs/design/DESIGN_SYSTEM.md), [docs/design/VISUAL_DIRECTION.md](docs/design/VISUAL_DIRECTION.md), and [docs/components/README.md](docs/components/README.md)
+- UI work: first follow [docs/agents/21ST_AGENT_SETUP.md](docs/agents/21ST_AGENT_SETUP.md) and [docs/components/21ST_COMPONENT_WORKFLOW.md](docs/components/21ST_COMPONENT_WORKFLOW.md), then [docs/design/DESIGN_SYSTEM.md](docs/design/DESIGN_SYSTEM.md), [docs/design/VISUAL_DIRECTION.md](docs/design/VISUAL_DIRECTION.md), and [docs/components/README.md](docs/components/README.md)
 - Navigation work: read [docs/components/navigation/PRIMARY_NAVIGATION.md](docs/components/navigation/PRIMARY_NAVIGATION.md) before changing the approved navigation primitive or AthR composition
 - Frontend setup: follow [docs/setup/FRONTEND_SETUP.md](docs/setup/FRONTEND_SETUP.md) before claiming Component Bank code is runtime-verified
 - Testing work: follow [docs/quality/QA_SECURITY_EDGE_CASES.md](docs/quality/QA_SECURITY_EDGE_CASES.md) and the verification gate in the relevant Component Bank entry
@@ -38,4 +40,4 @@ Prefer the narrowest relevant document rather than loading the full docs tree
 
 Use `/components/ui` for reusable UI primitives and `/components/athr/<domain>` for AthR product compositions
 
-When documents conflict, treat `CONTEXT.md` as authoritative for terminology, ADRs as authoritative for accepted architectural decisions, the newest approved focused spec as authoritative for feature behavior, `docs/components/21ST_COMPONENT_WORKFLOW.md` as authoritative for UI sourcing, and `docs/design/DESIGN_SYSTEM.md` as authoritative for theme usage
+When documents conflict, treat `CONTEXT.md` as authoritative for terminology, ADRs as authoritative for accepted architectural decisions, the newest approved focused spec as authoritative for feature behavior, `docs/agents/21ST_AGENT_SETUP.md` as authoritative for 21st connectivity and credentials, `docs/components/21ST_COMPONENT_WORKFLOW.md` as authoritative for UI sourcing, and `docs/design/DESIGN_SYSTEM.md` as authoritative for theme usage
