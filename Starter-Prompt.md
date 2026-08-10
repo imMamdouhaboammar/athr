@@ -1,56 +1,43 @@
 # AthR Coding Desk Starter Prompt
 
-Use this prompt at the beginning of **every coding session** for AthR.
+Use this prompt at the beginning of **every coding session** for AthR
 
-This is a hard pre-coding gate.
+This is a hard pre-coding gate
 
-**Do not edit implementation code, create components, change schemas, install feature dependencies, or start feature work until the Coding Desk is ready and every applicable gate below has been checked.**
+**Do not edit implementation code, create components, change schemas, install feature dependencies, or start feature work until the Coding Desk is ready and every applicable gate below has been checked**
 
-If a required tool cannot be prepared, stop and report the exact blocker. Do not silently downgrade the workflow.
-
----
+If a required tool cannot be prepared, stop and report the exact blocker. Do not silently downgrade the workflow
 
 ## Mission
 
-Prepare the complete AthR engineering workspace before coding, then execute the requested task with the correct skills, tools, component sources, tests, and review workflow.
-
-The desired behavior is:
+Prepare the complete AthR engineering workspace before coding, then execute the requested task with the correct skills, tools, component sources, tests, and review workflow
 
 ```text
 prepare -> verify -> plan -> implement -> test -> review -> verify -> report
 ```
 
-Not:
+## Phase 0: Read the Repository Contract
 
-```text
-start coding -> discover missing tools later -> improvise -> patch around failures
-```
-
----
-
-# Phase 0: Read the Repository Contract
-
-Before touching implementation code, read:
+Before implementation, read:
 
 1. `AGENTS.md`
 2. `CONTEXT.md`
 3. `docs/README.md`
-4. the narrowest product/spec docs relevant to the current task
-5. `docs/agents/21ST_AGENT_SETUP.md`
-6. `docs/agents/REQUIRED_SKILLS_PACK82.md`
-7. `docs/components/21ST_COMPONENT_WORKFLOW.md` for UI work
-8. `docs/design/DESIGN_SYSTEM.md` for UI work
-9. the relevant Component Bank entry if one exists
+4. the narrowest product/spec docs relevant to the task
+5. `docs/adr/0004-vite-react-frontend.md`
+6. `docs/agents/21ST_AGENT_SETUP.md`
+7. `docs/agents/REQUIRED_SKILLS_PACK82.md`
+8. `docs/components/21ST_COMPONENT_WORKFLOW.md` for UI work
+9. `docs/design/DESIGN_SYSTEM.md` for UI work
+10. the relevant Component Bank entry if one exists
 
-Do not load the entire docs tree without a reason.
+Do not load the full docs tree without a reason
 
-Completion criterion: the agent can state the current task, governing spec, domain terms, relevant architecture constraints, and required verification gate.
+If an older historical plan references Next.js, ADR 0004 overrides that frontend-runtime decision
 
----
+## Phase 1: Repository and Git Desk
 
-# Phase 1: Repository and Git Desk
-
-Inspect the workspace before editing:
+Inspect:
 
 ```bash
 git status --short --branch
@@ -61,84 +48,141 @@ git log -5 --oneline
 Confirm:
 
 - correct repository
-- correct branch or isolated worktree
+- correct branch/worktree
 - no unrelated user changes will be overwritten
 - package manager convention is known
 - current implementation state is understood
 
-For non-trivial feature work, use an isolated worktree when the active workflow supports it.
+Use an isolated worktree for non-trivial work when appropriate
 
-Never use destructive Git operations to make the workspace look clean.
+Never use destructive Git operations merely to obtain a clean tree
 
-Completion criterion: repository state and isolation strategy are explicit.
+## Phase 2: Vite Runtime Desk
 
----
+AthR's canonical frontend is:
 
-# Phase 2: Base Toolchain Desk
+```text
+Vite
+React
+TypeScript
+React Router
+Tailwind CSS
+shadcn/ui-compatible structure
+Supabase
+```
 
-Detect the actual project runtime and verify the tools it requires.
+Next.js is not part of the current architecture
 
-For the AthR frontend target, verify or prepare:
+Verify or prepare:
 
 - Node.js
-- the repository package manager
+- repository package manager
+- Vite
+- React
 - TypeScript
-- Next.js
+- React Router
 - Tailwind CSS
-- shadcn project structure
-- `@/*` import alias
-- `/components/ui`
-- `/components/athr`
-- `@/lib/utils`
+- shadcn-compatible `components.json`
+- `@/*` alias -> `src/*`
+- `src/components/ui`
+- `src/components/athr`
+- `src/features`
+- `src/lib`
+- `src/app` / router/provider bootstrap
+- test runner
+- lint
+- typecheck
+- production build
 
-If the runnable frontend has not been initialized yet, follow:
+If the runtime is not initialized, follow:
 
 `docs/setup/FRONTEND_SETUP.md`
 
-Do not fake typecheck/build status when the runtime does not exist.
+Do not introduce:
 
-Completion criterion: the agent can run the project's real install, lint, typecheck, test, and build commands, or has reported the exact missing runtime prerequisite.
+```text
+next/image
+next/navigation
+next/link
+Next.js App Router
+React Server Components
+Server Actions
+Next.js route groups
+```
 
----
+If an approved docs-first reference contains a Next.js-specific import, adapt that import during migration instead of changing the approved product behavior
 
-# Phase 3: 21st.dev CLI and Skills Gate
+Completion criterion: the active workspace can run the real Vite install/dev/lint/typecheck/test/build workflow, or the exact missing prerequisite is reported
 
-21st.dev is a required AthR UI source and agent capability.
+## Phase 3: Modular App Gate
 
-Install the CLI if necessary:
+AthR must remain fully modular
+
+Required responsibility direction:
+
+```text
+Route
+-> Feature / AthR composition
+-> Reusable UI
+-> Domain/application logic
+-> Data-access boundary
+```
+
+Check that the working structure supports feature-local modules such as:
+
+```text
+src/features/identity
+src/features/onboarding
+src/features/profile
+src/features/portfolio
+src/features/discovery
+src/features/network
+src/features/opportunities
+src/features/messaging
+src/features/notifications
+```
+
+Do not create empty directories only to satisfy this list
+
+Hard modularity rules:
+
+- route components stay thin
+- business logic does not live in generic UI primitives
+- presentational components do not configure Supabase clients
+- feature-specific state stays inside its feature unless genuinely shared
+- generic reusable UI lives in `src/components/ui`
+- reusable AthR compositions live in `src/components/athr/<domain>`
+- feature-local code lives in `src/features/<feature>`
+- avoid god components, catch-all utility files, circular feature imports, and duplicate component variants
+
+## Phase 4: 21st.dev CLI and Skills Gate
+
+Install if necessary:
 
 ```bash
 npm i -g @21st-dev/cli
 ```
 
-Authenticate locally when interactive login is available:
+Authenticate:
 
 ```bash
 21st login
 ```
 
-For CI or non-interactive clients use `API_KEY_21ST` through the environment or secret store. Never place a real key in tracked files.
-
-## Mandatory 21st skills install
-
-Before UI coding, run:
+Mandatory skill bootstrap before UI coding:
 
 ```bash
 npx @21st-dev/cli install-skill
 ```
 
-This is a required bootstrap step, not an optional enhancement.
-
-The current official 21st skill package covers searching, retrieving/installing, AI iteration, registry operations, and design synchronization.
-
-Verify the CLI can be used before relying on it:
+Verify:
 
 ```bash
 21st whoami
 21st search "professional social profile"
 ```
 
-Completion criterion:
+Required result:
 
 ```text
 21st CLI available: yes
@@ -147,102 +191,74 @@ Completion criterion:
 21st search works: yes
 ```
 
-No UI coding starts until this gate passes or a concrete infrastructure blocker is reported.
+No UI coding starts until this passes or a concrete infrastructure blocker is reported
 
----
+## Phase 5: 21st MCP Gate
 
-# Phase 4: 21st MCP Gate
-
-Connect the active coding agent to the canonical MCP endpoint where the client supports it:
+Canonical endpoint:
 
 `https://21st.dev/api/mcp`
 
-Use:
+Follow:
 
 `docs/agents/21ST_AGENT_SETUP.md`
 
-for the exact Claude Code, Claude Desktop, Codex, or generic MCP-client procedure.
-
 Credential rules:
 
-- prefer OAuth when supported
+- prefer OAuth where supported
 - otherwise use `API_KEY_21ST`
-- keep real secrets outside Git
-- never paste a real `21st_sk_...` value into tracked config or docs
+- keep secrets outside Git
+- never place a real `21st_sk_...` value in tracked files
+- never expose 21st credentials through `VITE_*`
 
-Verify the active client sees the 21st tools.
-
-Examples:
+Verify the active client sees 21st tools, for example:
 
 ```bash
 claude mcp list
 codex mcp list
 ```
 
-If MCP is unavailable but the CLI works, the CLI is the fallback for 21st discovery and installation. MCP failure does not remove the search-before-build rule.
+If MCP is unavailable but CLI works, CLI is the allowed fallback. MCP failure does not remove the search-before-build rule
 
-Completion criterion: MCP is connected, or the CLI fallback is verified and the MCP limitation is explicit.
+## Phase 6: `find-skills` Gate
 
----
-
-# Phase 5: `find-skills` Gate
-
-The agent must have the `find-skills` capability before coding so it can discover missing specialist capabilities instead of improvising them.
-
-Bootstrap it first:
+Install:
 
 ```bash
 npx skills add vercel-labs/skills@find-skills -g -y
 ```
 
-Use the Skills CLI to search by job and verify source ownership:
+Use:
 
 ```bash
 npx skills find "<task capability>"
 npx skills find "<skill-name>" --owner <owner>
 ```
 
-Do not install a fuzzy similarly named result without checking its source.
+Verify owner/source before installing community skills
 
-Community skills are executable instructions and must be treated as supply-chain dependencies: verify owner, repository, intended skill, and relevance before installation.
+Completion criterion: `find-skills` is installed and usable
 
-Completion criterion: `find-skills` is installed and usable.
+## Phase 7: Mandatory Pack82 Gate
 
----
-
-# Phase 6: Mandatory Pack82 Skills Gate
-
-Install and verify the complete required AthR baseline defined in:
+Use:
 
 `docs/agents/REQUIRED_SKILLS_PACK82.md`
 
-The manifest contains exactly 82 required skills covering:
-
-- Impeccable design review and refinement
-- design taste and high-end frontend quality
-- anti-slop review
-- Matt Pocock engineering workflows
-- Superpowers planning, TDD, debugging, worktrees, review, and verification
-- mobile and responsive UI
-- browser and computer-use tooling
-- clean-code guardrails
-
 For every manifest entry:
 
-1. verify it through `find-skills` / `npx skills find`
-2. confirm the expected owner/source
+1. verify through `find-skills`
+2. confirm owner/source
 3. install the exact manifest skill
-4. report any failure immediately
+4. report any failure
 
-After installation:
+Then run:
 
 ```bash
 npx skills check
 ```
 
-The full pack must be available on the coding desk, but do **not** load all 82 skills into context for every task. Invoke only the skills whose triggers apply to the current phase.
-
-Completion criterion:
+Required result:
 
 ```text
 find-skills installed: yes
@@ -251,36 +267,28 @@ Pack82 installed: 82/82
 skills check reviewed: yes
 ```
 
-If the count is not 82/82, coding is blocked unless the missing package itself is unavailable and the blocker is explicitly reported.
+Install the full baseline, but invoke only the skills relevant to the current task
 
----
+## Phase 8: Process Skills Gate
 
-# Phase 7: Process Skills Gate
+Apply the relevant workflows, including where triggered:
 
-Before implementation, determine the required process skills for the task.
+- `using-superpowers`
+- `brainstorming`
+- `writing-plans`
+- `using-git-worktrees`
+- `test-driven-development` / `tdd`
+- `systematic-debugging` / `diagnosing-bugs`
+- `codebase-design`
+- `domain-modeling`
+- `requesting-code-review`
+- `verification-before-completion`
 
-At minimum apply the relevant triggers from the installed workflows:
+Skills are execution procedures, not decoration
 
-- `using-superpowers` at session/workflow start
-- `brainstorming` before new behavior or creative implementation
-- `writing-plans` for multi-step implementation
-- `using-git-worktrees` when isolation is needed
-- `test-driven-development` or `tdd` for feature and bug implementation
-- `systematic-debugging` / `diagnosing-bugs` for unexplained failures
-- `codebase-design` for module/interface design
-- `domain-modeling` when domain language or boundaries change
-- `requesting-code-review` / code review before integration
-- `verification-before-completion` before any completion claim
+## Phase 9: UI Sourcing Gate
 
-Do not treat skills as decoration. Follow the active skill's process and completion criteria.
-
-Completion criterion: the agent states which skills are active for the current task and why.
-
----
-
-# Phase 8: UI Sourcing Gate
-
-For every UI requirement, the sourcing order is mandatory:
+Mandatory order:
 
 ```text
 Existing AthR Component Bank
@@ -290,23 +298,27 @@ Existing AthR Component Bank
 -> custom implementation only with documented justification
 ```
 
-Before coding a navbar, card, profile, gallery, feed, messaging view, filter bar, dialog, form, settings screen, opportunity surface, or other common UI pattern:
+For UI work:
 
-1. search `components/ui`
-2. search `components/athr`
+1. search existing `src/components/ui` and migrated/legacy Component Bank paths
+2. search `src/components/athr`
 3. search `docs/components`
-4. run a meaningful 21st search
+4. run meaningful 21st searches
 5. inspect the strongest candidates
-6. install/retrieve the selected candidate using 21st CLI, MCP, or its published registry command
-7. adapt it to AthR
+6. install/retrieve the selected candidate
+7. adapt it to AthR and Vite
+8. normalize it to Soft Pop
+9. document it
 
-Do not recreate an available 21st module from memory or screenshots.
+Do not recreate an available 21st module from screenshots or memory
 
-Do not rebuild a complete high-quality component from low-level primitives only to make it look custom.
+The canonical public hero is already selected. Follow:
 
-Custom code requires a documented product, accessibility, security, or adaptation-cost reason.
+`docs/components/landing/CANONICAL_HERO.md`
 
-Completion evidence for a UI task must include:
+Do not replace it with another hero
+
+UI evidence must include:
 
 ```text
 21st access: MCP / CLI
@@ -318,17 +330,13 @@ AthR composition: <path if applicable>
 Dependencies: <list>
 ```
 
----
+## Phase 10: Design Gate
 
-# Phase 9: Design Desk Gate
-
-Canonical base design system:
+Canonical base design:
 
 **Soft Pop by serafimcloud on 21st.dev**
 
-Reference:
-
-`https://21st.dev/@serafimcloud/themes/soft-pop`
+https://21st.dev/@serafimcloud/themes/soft-pop
 
 Follow:
 
@@ -336,68 +344,61 @@ Follow:
 - `docs/design/VISUAL_DIRECTION.md`
 - Component Bank rules
 
-Imported UI must be normalized to AthR semantics and Soft Pop tokens.
+Imported UI must use AthR semantics and Soft Pop tokens
 
-Use real product content structure and realistic fixture data. Remove source demo brands and irrelevant showcase content.
+Remove demo brands/content
 
-Use Lucide as the default generic icon set unless a real brand mark or another justified icon source is required.
+Use Lucide for generic UI icons unless a real brand mark or justified source is required
 
-For visual quality, invoke the relevant Pack82 design-review skills rather than relying on generic aesthetic judgement alone.
+Use the relevant installed design-review skills for visual review
 
-Completion criterion: the agent can identify the design source, tokens, selected component provenance, and visual-review skills for the task.
+## Phase 11: Supabase and Security Gate
 
----
+Vite is browser-delivered frontend code
 
-# Phase 10: Test and Browser Desk
+Therefore:
 
-Before implementation begins, identify how the result will be verified.
+- browser-safe Supabase configuration may use `VITE_SUPABASE_URL` and `VITE_SUPABASE_ANON_KEY`
+- Supabase service-role credentials must never appear in the browser bundle
+- private API keys must never use `VITE_*`
+- authorization must be enforced using RLS/database constraints
+- privileged operations belong behind Supabase Edge Functions or another explicit trusted backend boundary
+- presentation components must not construct arbitrary Supabase clients
 
-The coding desk should have access to the appropriate combination of:
+Inspect `.gitignore` and `.env.example`
 
-- unit/integration test runner
-- typecheck
-- lint
-- production build
-- browser or browser-agent tooling
-- responsive inspection
-- accessibility inspection
-- console/runtime error inspection
+Never copy credentials from chat into tracked content
 
-Use installed browser capabilities from Pack82 when appropriate instead of judging UI only from source code.
+## Phase 12: Test and Browser Gate
 
-For a visual feature, plan verification for at least:
+Identify the actual verification commands before implementation
+
+Required equivalents:
+
+```bash
+pnpm dev
+pnpm lint
+pnpm typecheck
+pnpm test
+pnpm build
+```
+
+For visual work verify:
 
 - desktop
-- narrow/mobile viewport
+- mobile/narrow viewport
 - keyboard focus
-- empty/loading/error states when applicable
-- reduced motion where motion exists
-- actual Soft Pop theme application
-- browser console errors
+- loading/empty/error states where applicable
+- reduced motion
+- Soft Pop
+- browser console/runtime errors
+- no horizontal overflow
 
-Completion criterion: verification commands and visual/browser checks are named before implementation.
-
----
-
-# Phase 11: Security and Secret Desk
-
-Before coding:
-
-- inspect `.gitignore`
-- use `.env.example` only for variable names/placeholders
-- keep `API_KEY_21ST` and all credentials outside tracked files
-- do not copy secrets from chat into repository content
-- do not expose secrets in screenshots, fixtures, tests, docs, shell history examples, or CI logs
-
-If a credential is exposed, stop and require rotation/revocation before normal work continues.
-
-Completion criterion: secret handling path is explicit and no real credential is present in tracked content.
-
----
+Use browser tooling rather than judging UI only from source code
 
 # CODING DESK READY Gate
 
-Before the first implementation edit, output this checklist with real status:
+Before the first implementation edit, output:
 
 ```text
 ATHR CODING DESK
@@ -405,7 +406,10 @@ ATHR CODING DESK
 Repository inspected: PASS/FAIL
 Correct branch/worktree: PASS/FAIL
 Relevant specs loaded: PASS/FAIL
-Runtime/toolchain ready: PASS/FAIL
+ADR 0004 Vite architecture loaded: PASS/FAIL
+Vite runtime/toolchain ready: PASS/FAIL
+React Router ready: PASS/FAIL
+Modular feature boundaries reviewed: PASS/FAIL
 21st CLI available: PASS/FAIL
 21st authenticated: PASS/FAIL
 21st skills installed: PASS/FAIL
@@ -417,59 +421,56 @@ Relevant process skills selected: PASS/FAIL
 Component Bank searched if UI: PASS/FAIL/N/A
 21st searched if UI: PASS/FAIL/N/A
 Soft Pop source loaded if UI: PASS/FAIL/N/A
+Supabase/browser-secret boundary reviewed: PASS/FAIL
 Test commands identified: PASS/FAIL
 Browser/visual verification identified if UI: PASS/FAIL/N/A
 Secret scan/handling checked: PASS/FAIL
+Next.js runtime imports absent or migration plan explicit: PASS/FAIL
 
 DESK STATUS: READY / BLOCKED
 BLOCKERS: <none or exact list>
 ```
 
-**Only `DESK STATUS: READY` permits coding.**
+**Only `DESK STATUS: READY` permits coding**
 
-Do not mark a check PASS from assumption. Use direct evidence from the active workspace.
+Do not mark a check PASS from assumption
 
----
+# Implementation Rules After READY
 
-# Implementation Rules After the Desk Is Ready
-
-Once the gate passes:
-
-1. follow the approved spec or current user request
-2. use TDD where applicable
-3. keep changes scoped
-4. prefer deep reusable modules over duplicated behavior
+1. follow the approved spec/current request
+2. preserve Vite + React architecture
+3. keep routes thin and features modular
+4. use TDD where applicable
 5. reuse AthR Component Bank and 21st sources
-6. preserve domain vocabulary from `CONTEXT.md`
-7. keep authorization server/database enforced where required
-8. keep UI responsive and accessible
-9. run targeted verification frequently
-10. run full applicable verification before claiming completion
-11. request/review code quality before integration
-12. report evidence, not confidence
-
----
+6. preserve `CONTEXT.md` vocabulary
+7. keep authorization database/backend enforced
+8. keep browser secrets out of the bundle
+9. keep UI responsive and accessible
+10. run targeted verification frequently
+11. run full verification before completion
+12. update Component Bank documentation when UI modules change
 
 # Final Completion Gate
 
-Before saying the coding task is complete:
+Before claiming completion:
 
-- run the fresh test command
+- run fresh tests
 - run fresh typecheck
-- run fresh lint where configured
-- run fresh production build where configured
+- run fresh lint
+- run fresh Vite production build
 - inspect the actual browser result for UI work
-- check responsive behavior
-- check accessibility basics
-- inspect console/runtime errors
-- perform the relevant code-review workflow
+- inspect responsive behavior
+- inspect accessibility basics
+- inspect browser console/runtime errors
+- perform relevant code review
 - confirm no secret was added
 - confirm no duplicate/reinvented component was introduced
-- update the Component Bank when UI modules changed
+- confirm no unintended `next/*` dependency/import was added
+- confirm feature boundaries remain modular
 
-Use `verification-before-completion` before making a success claim.
+Use `verification-before-completion`
 
-Final report must distinguish:
+Final states must distinguish:
 
 ```text
 PASS
@@ -478,21 +479,21 @@ NOT AVAILABLE
 BLOCKED
 ```
 
-Never convert `NOT AVAILABLE` into `PASS`.
-
----
+Never convert `NOT AVAILABLE` into `PASS`
 
 # Absolute Rules
 
-1. **Coding desk first. Coding second.**
-2. **Install 21st skills with `npx @21st-dev/cli install-skill` before UI coding.**
-3. **Install and use `find-skills` before relying on the skills pack.**
-4. **Pack82 is the required baseline and must resolve to 82/82 before coding.**
-5. **Use the smallest relevant skill set during each task even though Pack82 is installed.**
-6. **Search 21st.dev before creating common UI.**
-7. **Reuse complete components instead of rebuilding equivalent UI.**
-8. **Soft Pop is the canonical base design system.**
-9. **Never commit real 21st or other credentials.**
-10. **Never claim tests/build/review passed without fresh evidence.**
-11. **Infrastructure failure is a blocker to report, not permission to silently skip a gate.**
-12. **If the desk is BLOCKED, stop implementation and report the blocker.**
+1. **Coding desk first. Coding second**
+2. **Vite + React + TypeScript is the canonical frontend**
+3. **Next.js is not part of the current runtime**
+4. **AthR must remain fully modular**
+5. **Install 21st skills with `npx @21st-dev/cli install-skill` before UI coding**
+6. **Install/use `find-skills` before relying on Pack82**
+7. **Pack82 must resolve to 82/82 before coding**
+8. **Search 21st.dev before creating common UI**
+9. **Reuse complete components instead of rebuilding equivalents**
+10. **Soft Pop is the canonical base design**
+11. **Never expose service-role/private credentials through `VITE_*`**
+12. **Never claim tests/build/review passed without fresh evidence**
+13. **Infrastructure failure is a blocker to report, not permission to skip a gate**
+14. **If the desk is BLOCKED, stop implementation and report the blocker**
