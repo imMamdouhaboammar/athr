@@ -8,18 +8,54 @@ The product is centered on one idea:
 
 AthR is not intended to be another generic freelancer marketplace or a LinkedIn clone
 
-Specialists are discovered through relevant proof of work, professional context, trusted collaboration signals, and current availability
+Specialists are discovered through relevant proof of work, professional context, trusted collaboration signals, and current Availability
 
-## Product Documents
+## Documentation
 
-- [Product Design Spec](docs/superpowers/specs/2026-08-10-athr-product-design.md)
+Start with the full [Documentation Index](docs/README.md)
+
+Core product references:
+
+- [Product Requirements Document](docs/product/PRD.md)
+- [Functional Requirements](docs/product/FUNCTIONAL_REQUIREMENTS.md)
+- [Non-Functional Requirements](docs/product/NON_FUNCTIONAL_REQUIREMENTS.md)
+- [Personas and Jobs to Be Done](docs/product/PERSONAS_JTBD.md)
+- [Core User Journeys](docs/product/USER_JOURNEYS.md)
 - [Product Blueprint](docs/product/PRODUCT_BLUEPRINT.md)
 - [UX and Information Architecture](docs/product/UX_INFORMATION_ARCHITECTURE.md)
 - [Portfolio, Trust and Professional Network](docs/product/PORTFOLIO_TRUST_NETWORK.md)
-- [Visual Direction](docs/design/VISUAL_DIRECTION.md)
 - [Technical Architecture](docs/architecture/TECHNICAL_ARCHITECTURE.md)
+- [State Machines](docs/architecture/STATE_MACHINES.md)
 - [MVP Roadmap](docs/roadmap/MVP_ROADMAP.md)
 - [QA, Security and Edge Cases](docs/quality/QA_SECURITY_EDGE_CASES.md)
+
+## Design System
+
+AthR uses **Soft Pop by serafimcloud on 21st.dev** as the canonical base theme
+
+- [AthR Design System Contract](docs/design/DESIGN_SYSTEM.md)
+- [Visual Direction](docs/design/VISUAL_DIRECTION.md)
+- Canonical theme: https://21st.dev/@serafimcloud/themes/soft-pop
+
+The theme supplies the base token language; AthR supplies professional information hierarchy, layout, Work Evidence presentation, and interaction rules
+
+## Component Bank
+
+- [Component Bank Index](docs/components/README.md)
+- [Primary Navigation](docs/components/navigation/PRIMARY_NAVIGATION.md)
+- [Frontend Setup](docs/setup/FRONTEND_SETUP.md)
+
+First approved bank module:
+
+```text
+components/ui/expandable-tabs.tsx
+components/ui/expandable-tabs.demo.tsx
+components/athr/navigation/primary-nav.tsx
+```
+
+Reusable UI primitives live under `/components/ui`
+
+AthR product compositions live under `/components/athr/<domain>`
 
 ## Prompt Pack
 
@@ -37,14 +73,14 @@ Specialists are discovered through relevant proof of work, professional context,
 
 ## Recommended Build Order
 
-1. Foundation: auth, profiles, taxonomy, onboarding
-2. Proof of work: portfolio builder, case studies, media, collaborators
-3. Discovery: search, filters, specialist discovery, work discovery
-4. Network: follow, work feed, saves, recommendations
-5. Opportunity: project briefs, opportunities, invites, applications
+1. Foundation: auth, Profiles, taxonomy, onboarding
+2. Proof of Work: Portfolio Builder, Case Studies, media, Collaborators
+3. Discovery: search, filters, Specialist discovery, Work Evidence discovery
+4. Network: follow, Work Feed, Saves, Recommendations
+5. Opportunity: Project Briefs, Opportunities, Invites, Applications
 6. Communication: messaging and notifications
-7. Trust: verified relationships, recommendations, project verification
-8. Later: crews, contracts, invoices, payments
+7. Trust: confirmed Work Relationships, Recommendations, verification
+8. Later: Crews, contracts, invoices, payments
 
 ## MVP Product Rule
 
