@@ -3,108 +3,120 @@
 Use this prompt with a product designer, frontend agent or design-focused coding agent
 
 ```text
-Design AthR, a distinctive professional social and freelance product for digital marketing specialists
+Design AthR, a professional work network and freelance marketplace for digital marketing specialists
 
-The product must look intentionally art-directed by a strong digital product designer
+CANONICAL DESIGN SYSTEM
 
-Do not produce a generic SaaS interface
+Use Soft Pop by serafimcloud on 21st.dev as the base design system:
+https://21st.dev/@serafimcloud/themes/soft-pop
 
-VISUAL IDEA
+This theme is mandatory, not loose inspiration
 
-Create an editorial professional network where the work itself is the main visual material
+Retrieve the actual current published Soft Pop token set at implementation time
+Do not approximate its colors, radius, fonts, shadows, light mode or dark mode from memory or screenshots
 
-Think:
-professional network
-meets editorial publication
-meets portfolio directory
-meets focused freelance marketplace
+Use the Soft Pop tokens for the base visual language and build AthR-specific product composition on top of them
+
+Soft Pop defines the token layer
+AthR defines layout, hierarchy, information density, Work Evidence presentation and interaction behavior
+
+Do not replace Soft Pop with default shadcn styling or another theme
+Do not invent a parallel palette
+Use semantic AthR aliases only for real domain states such as Availability, Verification State and Opportunity status
+
+PRODUCT VISUAL IDEA
+
+Create a professional work network where real Work Evidence is the main visual material
+
+The experience combines:
+professional identity
+portfolio
+professional discovery
+focused freelance marketplace
+work-centered network
+
+The result should feel friendly and expressive without becoming childish or decorative
 
 Do not imitate LinkedIn, Upwork, Fiverr, Contra, Behance or Dribbble directly
 
-Use familiar interaction patterns where they improve usability, but create an original visual language
-
-DESIGN PERSONALITY
+DESIGN CHARACTER
 
 Professional
-Confident
+Friendly
+Expressive
 Editorial
-Sharp
-Creative
-Calm
+Clear
+Approachable
+Distinctive
 Highly legible
 Content first
 
-Avoid playful startup illustration language
+SOFT POP WITH PROFESSIONAL RESTRAINT
 
-ANTI-SLOP RULES
+Use Soft Pop's actual token character for surfaces, controls, borders, focus, radius, typography and elevation
 
-Never use:
+Do not interpret "soft" as:
+excessive pills
+huge rounded rectangles
+a card around every section
+large empty spacing
+constant shadows
+playful decoration unrelated to the user's work
 
-glassmorphism
-neon
-random gradients
-purple AI palettes
-floating blobs
-glowing objects
-abstract 3D shapes
-gradient text
-giant rounded cards
-excessive pill UI
-random decorative icons
-fake analytics
-fake charts
-generic dashboard widgets
-robot imagery
-AI brains
-huge empty hero sections
-unnecessary shadows
-overdone animation
+The user's portfolio must remain visually stronger than the interface around it
 
-Do not turn every section into a card
+ANTI-SLOP GUARDRAILS
 
-Avoid excessive container nesting
-
-Do not place cards inside cards inside cards
+No glassmorphism
+No neon or cyber styling
+No unrelated AI visual language
+No floating abstract blobs
+No glowing technology objects
+No generic 3D decoration
+No decorative gradient text
+No fake analytics
+No fake charts
+No generic dashboard widget wall
+No robot imagery
+No huge empty product hero
+No nested card stacks
+No animation without interaction meaning
 
 TYPOGRAPHY
 
-Typography must carry much of the personality
+Use the typography tokens supplied by Soft Pop when present
 
-Use:
-strong editorial display typography for major headings
-highly readable modern sans or grotesk for interface text
-compact monospace only where useful for metadata
-
-Create clear contrast between:
-identity
+Create strong hierarchy between:
+page identity
 work title
-professional role
+professional headline
+section heading
+body
 metadata
 metrics
 actions
+
+Do not use oversized marketing-site typography inside dense authenticated screens
 
 LAYOUT
 
 Use a disciplined responsive grid
 
-Allow work media to occasionally break normal content widths
-
 Mix:
-full-width project media
+full-width Work Evidence
 editorial grids
-compact profile rows
+compact professional rows
 split layouts
 horizontal work strips
-dense search results
-clean text blocks
+dense discovery results
+clean long-form sections
+focused panels where behavior genuinely needs a container
 
-Do not create one repeated universal card component for every type of content
+Do not create one universal card component for every content type
 
 NAVIGATION
 
-Desktop:
-Use a compact primary navigation
-Do not consume excessive horizontal space
+Keep primary navigation compact
 
 Primary areas:
 Home
@@ -114,72 +126,69 @@ Messages
 Saved
 Profile
 
-A prominent contextual action may be:
+Contextual creation actions:
 Share work
 Post opportunity
 
+Do not turn navigation into a decorative floating dock unless there is a functional reason
+
 HOME
 
-The home experience is a Work Feed
+Home is the Work Feed
 
 Prioritize:
-new case studies
+Case Studies
 professional breakdowns
 experiments
+Availability updates
 collaboration requests
-relevant opportunities
+relevant Opportunities
 
-Do not prioritize generic text updates
+Different content types may use different compositions
+
+Generic commentary should not visually overpower work
 
 DISCOVER
 
-Create a visually strong talent discovery experience
+Create a comparison-friendly discovery experience
 
-Search can accept natural professional intent such as:
+Search may accept intent such as:
+Paid social specialist with DTC fashion experience in Saudi Arabia
 
-Paid social specialist with DTC fashion experience
-
-Filtering should feel fast and lightweight
-
-Possible filters:
+Useful filters include:
 Specialty
 Skill
 Industry
 Market
 Availability
 Language
-Project type
-Rate
+Engagement type
+Rate or budget fit where supported
 
-Search results should expose evidence immediately
+Results should expose relevant Work Evidence directly beside the Specialist when possible
 
-Show examples of relevant work next to the specialist rather than hiding all proof behind the profile
+Do not use follower count as the main visual or ranking signal
 
-PROFILE PAGE
+PROFILE
 
-The profile should feel partly like a professional identity page and partly like a curated portfolio
+The Profile is professional identity plus curated Work Evidence
 
-Recommended hierarchy:
-
+Hierarchy:
 Identity
 Professional positioning
 Availability
 Primary expertise
-Selected work
+Selected Work
 Services
 Experience
 Collaborators
 Recommendations
 
-Do not start with a long biography
-
-Example strong headline:
-
-Paid Social for DTC brands spending $30k-$200k/mo
+Selected Work receives more visual area than biography
 
 PORTFOLIO
 
-The portfolio must visually dominate specialist profiles
+The Portfolio is one of the highest-quality experiences in the product
 
 Support:
 image
@@ -189,97 +198,140 @@ document
 website
 campaign creative
 
-Case study pages should combine visual work with structured information
-
-Include:
-Objective
-Role
+Case Study rhythm:
+Project identity
+Hero media
+Context
 Contribution
-Channels
-Market
-Collaborators
-Work
+Work gallery
 Results
+Collaborators
+Next action
 
-Use restrained metric presentation
+Do not tint or decorate user Work Evidence to make it match Soft Pop
+Soft Pop frames the work; it does not restyle the work
 
-Do not make case studies look like analytics dashboards
+Present Work Metrics as evidence, not dashboard widgets
+Always make Verification State clear
 
-PROJECT BRIEF EXPERIENCE
+PORTFOLIO BUILDER
 
-Design the project brief as a focused progressive form
+Use progressive sections
+clear labels
+Soft Pop form tokens
+visible draft state
+autosave feedback
+immediate media previews
+reordering controls
+inline validation
+preview before publish
 
-Ask one meaningful decision at a time when possible
+Preserve entered information across recoverable errors
 
-Avoid intimidating long forms
+PROJECT BRIEF AND OPPORTUNITIES
 
-After completion, transition naturally into recommended specialists
+Project Briefs should read like structured marketing needs rather than HR job descriptions
+
+Prioritize:
+goal
+Specialty
+Market
+Industry
+current situation
+expected work
+budget context
+duration
+start date
+Availability needs
+
+After a brief, move naturally into relevant Specialists and Work Evidence
 
 MESSAGING
 
-Messaging should be minimal, fast and professional
+Keep messaging quiet and professional
 
-Show conversation context clearly
+Show conversation context clearly, such as:
+Regarding a Portfolio Project
+Regarding an Opportunity
+Regarding a Service
 
-Examples:
-Regarding a portfolio project
-Regarding an opportunity
-Regarding a service
+Do not recreate Slack or a full workplace communication product
+
+STATUS AND TRUST
+
+Use text plus visual treatment for:
+Available now
+Limited availability
+Booked
+Self reported
+Client verified
+Opportunity states
+
+Color cannot be the only indicator
+
+Do not make self-reported claims look platform-certified
 
 MOTION
 
-Motion must communicate interaction
-
-Good examples:
-content expand
-filter transition
-image reveal
-saved state
+Use motion for state change and spatial continuity only:
+open and close
+expand and collapse
+filter change
+save state
 profile preview
 portfolio navigation
 media reorder
+dialog or sheet transition
+message arrival
 
-Avoid:
-constant floating
-background movement
-parallax everywhere
-decorative motion
-cursor effects
-scroll hijacking
+Respect reduced-motion preferences
 
 RESPONSIVE DESIGN
 
-Mobile must feel intentionally designed
+Do not mechanically stack desktop UI
 
-Do not simply stack desktop components
+Mobile priority:
+Work Evidence
+Identity
+Professional context
+Primary action
+Secondary metadata
 
-Make portfolio browsing especially strong on mobile
-
-Use sticky contextual actions sparingly
+Use sticky actions sparingly
 
 ACCESSIBILITY
+
+Verify rendered contrast after applying the actual Soft Pop tokens
 
 Maintain:
 keyboard navigation
 visible focus states
 semantic hierarchy
-appropriate contrast
-reduced motion support
-accessible form errors
+reduced motion
+accessible errors
 touch targets suitable for mobile
+media descriptions where appropriate
+
+Verify both supported appearance modes
 
 FINAL QUALITY TEST
 
-Before accepting any screen ask:
+Before accepting a screen ask:
 
-Could this screen belong unchanged to a generic AI SaaS template?
-If yes, redesign it
+Does it use the actual Soft Pop design system rather than a guessed lookalike?
+If no, correct the token layer
 
-Could the layout still make sense if all decorative gradients and icons disappeared?
-If no, redesign it
+Could this screen belong unchanged to a generic SaaS template?
+If yes, redesign the composition
 
-Is the real work the most interesting visual element?
-If no, redesign it
+Is real Work Evidence more visually important than decoration?
+If no, reduce the interface treatment
+
+Can a professional compare the information they came for quickly?
+If no, improve hierarchy and density
+
+Is Soft Pop being used with enough restraint for a professional work product?
+If no, simplify
 
 Does every container, border, radius, icon and animation have a functional reason?
 If no, remove or simplify it
