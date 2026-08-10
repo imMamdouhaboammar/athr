@@ -1,0 +1,22 @@
+# Dependencies and builds
+node_modules/
+.next/
+out/
+dist/
+coverage/
+
+# Local environment and credentials
+.env
+.env.*
+!.env.example
+*.local
+
+# Local MCP or agent credential overrides
+.mcp.local.json
+.mcp.json.local
+.claude/settings.local.json
+
+# OS and editor noise
+.DS_Store
+.idea/
+.vscode/*.local.json
