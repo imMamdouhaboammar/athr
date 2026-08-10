@@ -33,6 +33,18 @@ Existing AthR Component Bank
 
 A coding agent must not start implementing a common UI pattern from scratch before completing that search
 
+### Selected-source exception
+
+When a module is already explicitly selected and Approved in this bank, the sourcing search is closed for that module unless the user requests a redesign or the selected source proves technically unusable
+
+The public landing hero is one such selected module
+
+Follow [`landing/CANONICAL_HERO.md`](landing/CANONICAL_HERO.md) and adapt `components/ui/hero.tsx`
+
+Do not replace it with a different generic 21st.dev hero merely because another candidate is available
+
+21st.dev remains required for its supporting components, dependencies, and canonical Soft Pop source
+
 ## Canonical Design System
 
 Base theme:
@@ -111,6 +123,7 @@ The module passes typecheck, tests where applicable, responsive review, accessib
 
 | Area | Module | Primitive | AthR composition | Status |
 |---|---|---|---|---|
+| Landing | Canonical Public Hero | `components/ui/hero.tsx` | route composition pending | Required / Approved, runtime verification pending |
 | Navigation | Primary Navigation | `components/ui/expandable-tabs.tsx` | `components/athr/navigation/primary-nav.tsx` | Approved, runtime verification pending |
 | Feed | Post Card | `components/ui/post-card.tsx` | `components/athr/feed/work-post-card.tsx` | Approved, runtime verification pending |
 
@@ -181,9 +194,9 @@ Preference alone is not sufficient justification
 Every completed UI task should be able to report:
 
 ```text
-21st search performed: yes/no
-Candidate selected: identifier or URL
-Install method: 21st add / shadcn command / existing AthR module
+21st search performed: yes/no/not applicable because selected bank source
+Candidate selected: identifier, URL, or approved bank entry
+Install method: 21st add / shadcn command / existing AthR module / supplied selected source
 Primitive path: path
 AthR composition path: path if applicable
 Dependencies added: list
@@ -195,7 +208,7 @@ Typecheck: pass/fail
 Build: pass/fail
 ```
 
-If `21st search performed` is `no`, the task needs a documented exception
+If `21st search performed` is `no`, the task needs either a documented exception or an already-selected Approved Component Bank source such as the canonical public hero
 
 ## Verification Rule
 
