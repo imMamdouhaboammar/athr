@@ -2,89 +2,109 @@
 
 ## 1. Design Intent
 
-AthR should feel like a professional editorial network built around strong work
+AthR uses **Soft Pop by serafimcloud on 21st.dev** as its canonical design-token system
 
-The visual language should sit between:
+Canonical theme:
 
-- Professional directory
-- Editorial publication
-- Portfolio experience
-- Focused freelance marketplace
+https://21st.dev/@serafimcloud/themes/soft-pop
 
-The actual work should be the most visually interesting material on screen
+The detailed implementation contract is defined in [DESIGN_SYSTEM.md](DESIGN_SYSTEM.md)
+
+Soft Pop provides the product's base visual character; AthR provides the information hierarchy, editorial composition, professional density, and interaction behavior
+
+The result should feel like a professional work network with a softer, more human visual character than a conventional freelance marketplace
+
+The actual Work Evidence must remain the most visually important material on screen
 
 ## 2. Design Personality
 
 - Professional
-- Confident
+- Friendly
+- Expressive
 - Editorial
-- Sharp
-- Creative
-- Calm
+- Clear
+- Approachable
+- Distinctive
 - Highly legible
 - Content first
 
-Avoid playful startup illustration language and generic AI product styling
+The interface can feel playful in controlled details, but professional information must remain easy to compare and trust
 
-## 3. Anti-Slop Rules
+## 3. Theme Rule
 
-Never rely on:
+Do not approximate Soft Pop from memory or screenshots
 
-- Glassmorphism
-- Neon
-- Random gradients
-- Purple AI palette
-- Floating blobs
-- Glowing objects
-- Abstract 3D objects
-- Gradient text
-- Giant rounded cards
-- Excessive pill UI
-- Random decorative icons
-- Fake analytics
-- Fake charts
-- Generic dashboard widgets
-- Robot imagery
-- AI brains
-- Huge empty hero sections
-- Unnecessary shadows
-- Motion without functional meaning
+At implementation time, retrieve the current published token set from the canonical 21st.dev theme and use those values as the base theme source
+
+Do not create screen-specific substitutes for:
+
+- Primary
+- Secondary
+- Accent
+- Muted
+- Background
+- Foreground
+- Card
+- Popover
+- Border
+- Input
+- Ring
+- Radius
+- Theme fonts
+- Theme shadows
+
+AthR-specific semantic status tokens may be added only when required for domain meaning
+
+## 4. Anti-Slop Rules
+
+Avoid visual choices that are unrelated to Soft Pop, product meaning, or Work Evidence
+
+Hard guardrails:
+
+- No glassmorphism
+- No neon or cyber styling
+- No unrelated AI visual language
+- No floating abstract blobs
+- No glowing objects
+- No generic 3D technology objects
+- No decorative gradient text
+- No fake analytics or charts
+- No generic dashboard widget walls
+- No robot or AI brain imagery
+- No huge empty product heroes
+- No excessive container nesting
+- No motion without a state or spatial purpose
 
 Do not turn every section into a card
 
-Do not create card inside card inside card layouts
+Do not place cards inside cards inside cards
 
-## 4. Typography
+Soft Pop's softness should come from its real token set and component treatment, not from arbitrary decoration
 
-Typography should carry much of the identity
+## 5. Typography
 
-### Display
+Use the typography tokens provided by the canonical Soft Pop theme where present
 
-Use a strong editorial display face or distinctive grotesk for major titles
+AthR needs strong hierarchy between:
 
-### Interface
-
-Use a highly readable sans for body text, controls and navigation
-
-### Metadata
-
-A compact mono can be used selectively for project metadata, metrics or technical labels
-
-Create visible hierarchy between:
-
-- Identity
+- Page identity
 - Work title
-- Professional role
-- Summary
+- Professional headline
+- Section heading
+- Body
 - Metadata
 - Metrics
 - Actions
 
-## 5. Layout Principles
+Do not use oversized landing-page typography inside dense product screens
+
+Metadata may use a compact secondary treatment when it remains highly legible
+
+## 6. Layout Principles
 
 Use a disciplined responsive grid
 
-Allow work media to occasionally break standard content width when it improves the portfolio experience
+Soft styling does not mean loose information architecture
 
 Mix:
 
@@ -94,13 +114,16 @@ Mix:
 - Split layouts
 - Horizontal work strips
 - Dense search results
-- Clean long-form text blocks
+- Clean long-form sections
+- Focused bounded panels when behavior needs a clear container
+
+Allow Work Evidence to break standard content width when it materially improves presentation
 
 Avoid one repeated universal component shape across every screen
 
-## 6. Navigation
+## 7. Navigation
 
-Desktop navigation should be compact and not consume excessive horizontal space
+Desktop navigation should be compact
 
 Primary areas:
 
@@ -116,68 +139,70 @@ Contextual creation actions:
 - Share work
 - Post opportunity
 
-Mobile navigation should remain direct and content-focused
+Navigation should use Soft Pop's surface and interaction tokens without becoming a decorative floating dock unless the layout has a functional reason for that treatment
 
-## 7. Home
+Mobile navigation should remain direct and keep Work Evidence visible
 
-Home is a Work Feed
+## 8. Home
 
-The visual hierarchy should favor:
+Home is the Work Feed
 
-- Case study media
-- Work title
-- Specialist identity
-- Professional context
-- Useful result or learning
+Visual priority:
 
-Generic commentary should not visually overpower the work
+1. Work or professional opportunity
+2. Specialist identity
+3. Professional context
+4. Useful result or learning
+5. Social interaction controls
 
-Different content types should have distinct compositions
+Different Work Feed types may use distinct compositions
 
-## 8. Discover
+Do not force every type into the same card template
 
-Discover should feel dense enough to compare professionals while still giving portfolio work visual weight
+## 9. Discover
 
-Avoid oversized profile cards with little evidence
+Discover should combine Soft Pop's approachable component treatment with professional comparison density
 
-A person result should expose:
+A Specialist result should expose:
 
 - Identity
 - Headline
 - Expertise
 - Availability
-- Relevant work
+- Relevant Work Evidence
 - Trust signal
 
-Filters should be compact and easy to change
+Relevant Case Studies should appear directly in results where useful
 
-On mobile, filters may use a bottom sheet or focused overlay
+Filters should be compact, readable, and easy to reverse
 
-## 9. Profile
+Use pills only for genuinely atomic filters or states
 
-The profile should feel like a professional identity page and curated portfolio combined
+## 10. Profile
+
+The Profile combines professional identity with a curated portfolio
 
 Recommended order:
 
 1. Identity
-2. Positioning
+2. Professional positioning
 3. Availability
 4. Primary expertise
-5. Selected work
+5. Selected Work
 6. Services
 7. Experience
 8. Collaborators
 9. Recommendations
 
-Do not start with a long biography
+Selected Work should receive more visual area than biography
 
-Selected work should receive strong visual space
+Soft Pop can shape buttons, badges, surfaces, and interaction states while the profile layout remains editorial and evidence-led
 
-## 10. Portfolio Case Study
+## 11. Portfolio Case Study
 
-The work should dominate the top of the case study
+The work dominates the Case Study
 
-Use the following rhythm:
+Recommended rhythm:
 
 - Project identity
 - Hero media
@@ -188,33 +213,38 @@ Use the following rhythm:
 - Collaborators
 - Next action
 
-Result metrics should be restrained and editorial, not dashboard-like
+Do not apply decorative filters, tints, gradient overlays, or excessive framing to user Work Evidence
 
-## 11. Portfolio Builder
+Work Metrics should feel like evidence, not dashboard widgets
 
-The builder should feel calm, direct and progressive
+## 12. Portfolio Builder
+
+The builder should feel friendly, direct, and calm
 
 Use:
 
-- Clear section titles
-- Inline validation
+- Progressive sections
+- Clear labels
+- Soft Pop form tokens
 - Visible draft state
 - Immediate media previews
 - Reordering controls
+- Inline validation
 - Clean preview transition
 
 Avoid:
 
-- Huge multi-column forms
+- One giant multi-column form
 - Excessive accordions
-- Decorative progress animations
+- Decorative progress animation
 - Too many floating controls
+- Nested panels with no behavioral reason
 
-## 12. Opportunity Screens
+## 13. Opportunity Screens
 
-Opportunity cards and detail pages should prioritize business context
+Opportunity screens should read like structured marketing problems rather than HR vacancies
 
-Show:
+Prioritize:
 
 - Goal
 - Specialty
@@ -223,42 +253,45 @@ Show:
 - Budget context
 - Duration
 - Start date
+- Relevant Work Evidence
 
-Avoid generic job-board styling when possible
+Use Soft Pop's character without reducing information density needed for professional comparison
 
-A brief should read like a marketing problem, not an HR vacancy
-
-## 13. Messaging
+## 14. Messaging
 
 Messaging should be quiet and functional
 
-Keep emphasis on:
+Emphasize:
 
 - Participant identity
-- Work or opportunity context
+- Conversation context
 - Message content
-- Primary actions
+- Primary next action
 
-Avoid visual noise such as excessive side panels, decorative status icons or workplace chat controls not required by the MVP
+Use theme surfaces and state tokens consistently
 
-## 14. Motion
+Avoid workplace-chat controls that the MVP does not need
 
-Motion should explain interaction
+## 15. Motion
+
+Motion communicates interaction and spatial continuity
 
 Good uses:
 
 - Content expand
 - Filter transition
 - Image reveal
-- Saved state
+- Save state
 - Profile preview
 - Portfolio navigation
-- Reordering media
+- Media reorder
+- Dialog and sheet entry
+- Message arrival
 
 Avoid:
 
 - Constant floating
-- Background motion
+- Background animation
 - Decorative parallax
 - Cursor effects
 - Scroll hijacking
@@ -266,83 +299,102 @@ Avoid:
 
 Respect reduced motion preferences
 
-## 15. Imagery
+## 16. Imagery
 
-Use real portfolio work as the main imagery source
+Real Work Evidence is the primary imagery source
 
-If temporary placeholder content is required during development, use realistic marketing artifacts and clearly mark them as fixture data
+Development fixtures should use realistic marketing artifacts rather than generic stock scenes
 
-Avoid generic stock images of offices, handshakes, meetings, dashboards, robots or abstract technology
+Avoid generic imagery of offices, handshakes, meeting rooms, fake dashboards, robots, or abstract technology objects
 
-## 16. Color
+## 17. Color
 
-Use a restrained neutral base with one purposeful brand accent
+Color comes from the canonical Soft Pop token set
 
-The visual identity should still hold up in grayscale
+Do not invent a parallel AthR palette
 
-Do not depend on gradients to make the product feel distinctive
+Additional semantic aliases must map to domain states and remain accessible
 
-Color should communicate:
+Color may communicate:
 
-- Brand identity
+- Brand action
 - Interaction state
 - Availability
 - Verification
+- Opportunity status
 - Error and warning states
 
-## 17. Component Rules
+Color must not carry meaning alone
 
-Every component should have a clear job
+## 18. Radius and Shadows
+
+Use the canonical theme's radius and shadow tokens
+
+Do not increase radius globally to make the UI feel softer
+
+Do not turn all buttons into pills
+
+Use shadows for actual elevation and interaction, especially menus, dialogs, sheets, and dragged media
+
+Prefer spacing, surface contrast, and borders for ordinary page grouping
+
+## 19. Component Rules
+
+Every component needs one clear job
 
 Before adding a container ask:
 
 - Does this grouping improve comprehension
+- Does it need a bounded surface
 - Does it need a border
-- Does it need a background
 - Does it need radius
+- Does it need elevation
 - Does it need an icon
 
-Default answer should not automatically be yes
+Do not add every treatment by default
 
-## 18. Responsive Rules
+## 20. Responsive Rules
 
-Mobile should be intentionally composed
+Mobile is intentionally composed, not mechanically stacked
 
-Do not simply stack the desktop layout
+Priority:
 
-Prioritize:
+1. Work Evidence
+2. Specialist identity
+3. Professional context
+4. Primary action
+5. Secondary metadata
 
-- Work media
-- Specialist identity
-- Search
-- Availability
-- Message and save actions
+Keep sticky actions limited and do not obscure portfolio content
 
-Keep sticky actions limited and do not cover portfolio content
-
-## 19. Accessibility
+## 21. Accessibility
 
 Required:
 
-- Clear focus states
+- Visible focus states
 - Keyboard navigation
 - Semantic hierarchy
-- Appropriate contrast
+- Appropriate rendered contrast
 - Reduced motion support
 - Accessible form errors
-- Touch targets suitable for mobile
-- Media descriptions when appropriate
+- Mobile touch targets
+- Media descriptions where appropriate
 
-## 20. Final Screen Review
+Verify Soft Pop in both supported appearance modes after implementation rather than assuming upstream token contrast is sufficient for every AthR composition
 
-Before approving any major screen ask:
+## 22. Final Screen Review
 
-1. Could this screen belong unchanged to a generic AI SaaS template
-2. Is the actual work more interesting than the interface decoration
-3. Is any information repeated only to fill space
-4. Are cards being used where plain layout would work better
-5. Would the layout still feel intentional without gradients and decorative icons
-6. Is the primary action obvious
-7. Does mobile have a deliberate composition
+Before approving a major screen ask:
 
-If the answer exposes generic styling, redesign before implementation moves forward
+1. Does it clearly use the canonical Soft Pop design system rather than a guessed lookalike
+2. Is Work Evidence still more interesting than interface decoration
+3. Can the user compare the professional information they came for
+4. Is Soft Pop being used with enough restraint for a professional product
+5. Is any information repeated only to fill space
+6. Are cards being used where an open layout or row would work better
+7. Is the primary action obvious
+8. Does mobile have a deliberate composition
+9. Are light and dark modes coherent
+10. Does accessibility hold after applying the actual theme tokens
+
+If a screen feels like a generic template with Soft Pop colors pasted on top, redesign the composition rather than adding more decoration
