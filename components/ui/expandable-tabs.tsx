@@ -83,7 +83,7 @@ export function ExpandableTabs({
   value,
   defaultValue = null,
   collapseOnOutsideClick = true,
-  ariaLabel = "Navigation",
+  ariaLabel = "Expandable options",
   onChange,
 }: ExpandableTabsProps) {
   const [internalSelected, setInternalSelected] =
@@ -124,7 +124,7 @@ export function ExpandableTabs({
   return (
     <div
       ref={outsideClickRef}
-      role="tablist"
+      role="group"
       aria-label={ariaLabel}
       className={cn(
         "flex max-w-full items-center gap-2 overflow-x-auto rounded-2xl border bg-background p-1 shadow-sm",
@@ -143,8 +143,7 @@ export function ExpandableTabs({
           <motion.button
             key={tab.title}
             type="button"
-            role="tab"
-            aria-selected={isSelected}
+            aria-pressed={isSelected}
             aria-label={tab.title}
             disabled={tab.disabled}
             variants={buttonVariants}
