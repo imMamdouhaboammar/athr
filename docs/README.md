@@ -2,6 +2,10 @@
 
 Use this file as the human and agent entry point for project documentation
 
+## Coding Session Entry Point
+
+- [`../Starter-Prompt.md`](../Starter-Prompt.md) — hard pre-coding gate; the coding desk must report `DESK STATUS: READY` before implementation starts
+
 ## Product
 
 - [`product/PRD.md`](product/PRD.md) — buildable product requirements and user stories
@@ -76,11 +80,14 @@ Current approved bank files:
 ## Agent Conventions
 
 - [`agents/21ST_AGENT_SETUP.md`](agents/21ST_AGENT_SETUP.md) — canonical CLI and MCP setup for Claude Code, Claude Desktop, Codex, CI, and generic MCP clients
+- [`agents/REQUIRED_SKILLS_PACK82.md`](agents/REQUIRED_SKILLS_PACK82.md) — mandatory 82-skill baseline; bootstrap and verify through `find-skills`/Skills CLI before coding
 - [`agents/issue-tracker.md`](agents/issue-tracker.md)
 - [`agents/triage-labels.md`](agents/triage-labels.md)
 - [`agents/domain.md`](agents/domain.md)
-- [`../AGENTS.md`](../AGENTS.md) — cross-agent execution rules
+- [`../AGENTS.md`](../AGENTS.md) — cross-agent execution rules and hard coding-desk pointer
 - [`../CLAUDE.md`](../CLAUDE.md) — Claude Code pointer to shared agent rules
+- [`../GEMINI.md`](../GEMINI.md) — Gemini pointer to shared agent rules
+- [`../.github/copilot-instructions.md`](../.github/copilot-instructions.md) — Copilot pointer to shared agent rules
 
 ## Implementation Plans
 
@@ -91,6 +98,8 @@ Current approved bank files:
 - [`superpowers/plans/2026-08-10-athr-trust-launch.md`](superpowers/plans/2026-08-10-athr-trust-launch.md)
 
 ## Working Rule
+
+Start coding sessions from `../Starter-Prompt.md`
 
 Load the narrowest document that governs the current task
 
