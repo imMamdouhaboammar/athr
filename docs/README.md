@@ -75,10 +75,12 @@ Current approved bank files:
 
 ## Agent Conventions
 
+- [`agents/21ST_AGENT_SETUP.md`](agents/21ST_AGENT_SETUP.md) — canonical CLI and MCP setup for Claude Code, Claude Desktop, Codex, CI, and generic MCP clients
 - [`agents/issue-tracker.md`](agents/issue-tracker.md)
 - [`agents/triage-labels.md`](agents/triage-labels.md)
 - [`agents/domain.md`](agents/domain.md)
-- [`../AGENTS.md`](../AGENTS.md) — includes the non-negotiable component sourcing rule
+- [`../AGENTS.md`](../AGENTS.md) — cross-agent execution rules
+- [`../CLAUDE.md`](../CLAUDE.md) — Claude Code pointer to shared agent rules
 
 ## Implementation Plans
 
@@ -92,6 +94,6 @@ Current approved bank files:
 
 Load the narrowest document that governs the current task
 
-For UI work, search the existing AthR Component Bank and 21st.dev before custom implementation
+For UI work, establish 21st access through `agents/21ST_AGENT_SETUP.md`, then search the existing AthR Component Bank and 21st.dev before custom implementation
 
 Do not duplicate requirements into a new document merely for convenience; link to the existing source of truth and add only new decisions or behavior
