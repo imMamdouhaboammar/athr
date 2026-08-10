@@ -59,6 +59,22 @@ If MCP is unavailable, use the 21st CLI; infrastructure failure does not remove 
 
 Adapt selected 21st modules to AthR domain behavior, Soft Pop tokens, accessibility, responsive behavior, and product requirements
 
+### Canonical public landing hero
+
+The public landing hero is already selected and is not an open design search
+
+Before changing or implementing it, read [`docs/components/landing/CANONICAL_HERO.md`](docs/components/landing/CANONICAL_HERO.md)
+
+Reference implementation:
+
+`components/ui/hero.tsx`
+
+Preserve the approved oversized stacked typography, overlapping professional evidence cards, hand-drawn accents, circular CTA, motion character, and rounded transition into the next section
+
+Adapt product copy, routes, evidence, and tokens to AthR rather than replacing the hero with a conventional SaaS template or a different 21st.dev hero
+
+21st.dev remains required for supporting components and the canonical Soft Pop theme, but another hero candidate does not override this approved Component Bank entry
+
 ## Agent skills
 
 - Coding-session bootstrap: follow [`Starter-Prompt.md`](Starter-Prompt.md)
@@ -67,6 +83,7 @@ Adapt selected 21st modules to AthR domain behavior, Soft Pop tokens, accessibil
 - Product behavior: follow [docs/product/PRD.md](docs/product/PRD.md), [docs/product/FUNCTIONAL_REQUIREMENTS.md](docs/product/FUNCTIONAL_REQUIREMENTS.md), and the focused product documents they reference
 - Architecture or schema work: follow [docs/architecture/TECHNICAL_ARCHITECTURE.md](docs/architecture/TECHNICAL_ARCHITECTURE.md), [docs/architecture/STATE_MACHINES.md](docs/architecture/STATE_MACHINES.md), and relevant ADRs under `docs/adr/`
 - UI work: first pass the coding-desk gate, then follow [docs/agents/21ST_AGENT_SETUP.md](docs/agents/21ST_AGENT_SETUP.md), [docs/components/21ST_COMPONENT_WORKFLOW.md](docs/components/21ST_COMPONENT_WORKFLOW.md), [docs/design/DESIGN_SYSTEM.md](docs/design/DESIGN_SYSTEM.md), [docs/design/VISUAL_DIRECTION.md](docs/design/VISUAL_DIRECTION.md), and [docs/components/README.md](docs/components/README.md)
+- Landing hero work: follow [`docs/components/landing/CANONICAL_HERO.md`](docs/components/landing/CANONICAL_HERO.md); this selected hero overrides generic hero discovery while preserving the rest of the 21st sourcing workflow
 - Navigation work: read [docs/components/navigation/PRIMARY_NAVIGATION.md](docs/components/navigation/PRIMARY_NAVIGATION.md) before changing the approved navigation primitive or AthR composition
 - Frontend setup: follow [docs/setup/FRONTEND_SETUP.md](docs/setup/FRONTEND_SETUP.md) before claiming Component Bank code is runtime-verified
 - Testing work: follow [docs/quality/QA_SECURITY_EDGE_CASES.md](docs/quality/QA_SECURITY_EDGE_CASES.md) and the verification gate in the relevant Component Bank entry
@@ -75,4 +92,4 @@ Prefer the narrowest relevant document rather than loading the full docs tree
 
 Use `/components/ui` for reusable UI primitives and `/components/athr/<domain>` for AthR product compositions
 
-When documents conflict, treat `Starter-Prompt.md` as authoritative for pre-coding readiness, `CONTEXT.md` as authoritative for terminology, ADRs as authoritative for accepted architectural decisions, the newest approved focused spec as authoritative for feature behavior, `docs/agents/21ST_AGENT_SETUP.md` as authoritative for 21st connectivity/credentials, `docs/agents/REQUIRED_SKILLS_PACK82.md` as authoritative for the baseline skill manifest, `docs/components/21ST_COMPONENT_WORKFLOW.md` as authoritative for UI sourcing, and `docs/design/DESIGN_SYSTEM.md` as authoritative for theme usage
+When documents conflict, treat `Starter-Prompt.md` as authoritative for pre-coding readiness, `CONTEXT.md` as authoritative for terminology, ADRs as authoritative for accepted architectural decisions, the newest approved focused spec as authoritative for feature behavior, `docs/agents/21ST_AGENT_SETUP.md` as authoritative for 21st connectivity/credentials, `docs/agents/REQUIRED_SKILLS_PACK82.md` as authoritative for the baseline skill manifest, `docs/components/21ST_COMPONENT_WORKFLOW.md` as authoritative for UI sourcing, `docs/components/landing/CANONICAL_HERO.md` as authoritative for the selected public landing hero, and `docs/design/DESIGN_SYSTEM.md` as authoritative for theme usage
